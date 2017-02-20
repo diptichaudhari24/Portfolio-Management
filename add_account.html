@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>ACCOUNT CREATION</title>
+<style type="text/css">
+.style1 {
+	font-size: xx-large;
+	color: #00FFFF;
+	font-weight: bold;
+}
+.style2 {
+	font-weight: bold;
+}
+.style3 {
+	color: #000000;
+}
+.style4 {
+	color: #800080;
+	font-size: large;
+}
+</style>
+
+
+<script type="text/javascript">
+
+function validateForm()
+{
+ with (document.accdetails)
+ {
+  var saveit = true;
+  
+  if (accno.value.length < 5 || isNaN(accno.value))
+  {
+   alert ("Not a valid account no.");
+   accno.focus();
+   accno.select();
+   saveit = false;
+  }
+  if ((!isNaN(bankname.value)) && saveit)
+  {
+   alert ("Invalid Bank Name...");
+   bankname.focus();
+   bankname.select();
+   saveit = false;
+  }
+   if ((!isNaN(branch.value)) && saveit)
+  {
+   alert ("Invalid Branch...");
+   branch.focus();
+   branch.select();
+   saveit = false;
+  }
+  if (startbal.value < 1000)
+  {
+   alert ("Minimum balance should be Rs. 1000");
+   startbal.focus();
+   startbal.select();
+   saveit = false;
+  }
+  if (bankname.value.length<1 && saveit)
+  {
+   alert ("You have to type Bank Name...");
+   bankname.focus();
+   bankname.select();
+   saveit = false;
+  }
+   if (branch.value.length<1 && saveit)
+  {
+   alert ("You cannot leave any text blank");
+   branch.focus();
+   branch.select();
+   saveit = false;
+  }
+  if (startbal.value.length < 1 && saveit)
+  {
+   alert ("type starting balance");
+   startbal.focus();
+   startbal.select();
+   saveit = false;
+  }
+  return saveit;
+ }
+ }
+</script>
+
+
+
+</head>
+
+<body background="back.jpg">
+<form name="accdetails" action="http://localhost/project/addacc.php" method="post" onsubmit="return validateForm()">
+<table cellpadding="0" cellspacing="0" style="width: 844px; height: 890px">
+	<!-- MSTableType="layout" -->
+	<tr>
+		<td valign="top">&nbsp;</td>
+		<td class="style1" colspan="3" valign="top">&nbsp;</td>
+		<td>&nbsp;</td>
+		<td colspan="2">&nbsp;</td>
+		<td style="height: 48px"></td>
+	</tr>
+	<tr>
+		<td class="style3" valign="top">&nbsp;</td>
+		<td class="style1" colspan="3" valign="top">&nbsp;</td>
+		<td>&nbsp;</td>
+		<td>&nbsp;</td>
+		<td valign="top"></td>
+		<td style="height: 48px"></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td class="style1" colspan="3" valign="top">ACCOUNT CREATION</td>
+		<td>&nbsp;</td>
+		<td colspan="2">&nbsp;</td>
+		<td style="height: 96px"></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td valign="top"><b>Account No.</b></td>
+		<td valign="top">
+			<input class="style2" name="accno" type="text" />
+		</td>
+		<td valign="top">&nbsp;</td>
+		<td valign="top">&nbsp;</td>
+		<td colspan="2" valign="top">&nbsp;</td>
+		<td style="height: 54px"></td>
+	</tr>
+	<tr>
+		<td rowspan="2" valign="top">&nbsp;</td>
+		<td valign="top"><b>AccountType</b></td>
+		<td valign="top">
+			<select name="acctype" style="width: 124px">
+			<option>Savings</option>
+			<option>Current</option>
+			</select>
+		</td>
+		<td rowspan="2" valign="top">&nbsp;</td>
+		<td rowspan="2" valign="top">&nbsp;</td>
+		//<td colspan="2" rowspan="2" valign="top">&nbsp;</td>
+		<td style="height: 58px"></td>
+	</tr>
+	<tr>
+		<td valign="top"><b>Bank Name</b></td>
+		<td valign="top">
+			<input class="style2" name="bankname" type="text" />
+		</td>
+		<td style="height: 55px"></td>
+	</tr>
+	<tr>
+		<td valign="top">&nbsp;</td>
+		<td valign="top"><b>Branch</b></td>
+		<td valign="top">
+			<input class="style2" name="branch" type="text" />
+		</td>
+		<td valign="top">&nbsp;</td>
+		<td valign="top">&nbsp;</td>
+		<td colspan="2" valign="top">&nbsp;</td>
+		<td style="height: 55px"></td>
+	</tr>
+	<tr>
+		<td valign="top">&nbsp;</td>
+		<td valign="top"><b>Starting Balance</b></td>
+		<td valign="top">
+			<input class="style2" name="startbal" type="text" />
+		</td>
+		<td valign="top">&nbsp;</td>
+		<td valign="top">&nbsp;</td>
+		<td colspan="2" valign="top">&nbsp;</td>
+		<td style="height: 51px"></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td valign="top">
+		<input name="create_acc" style="width: 129px; height: 30px" type="submit" value="CREATE ACCOUNT" /></td>
+		<td>&nbsp;</td>
+		<td valign="top">
+		<input name="cancel_button" style="width: 117px; height: 33px" type="button" value="CANCEL" /></td>
+		<td>&nbsp;</td>
+		<td colspan="2">&nbsp;</td>
+		<td style="height: 106px"></td>
+	</tr>
+	<tr>
+		<td style="width: 138px">&nbsp;</td>
+		<td style="width: 138px">&nbsp;</td>
+		<td style="width: 140px">&nbsp;</td>
+		<td style="width: 141px">&nbsp;</td>
+		<td style="width: 141px">&nbsp;</td>
+		<td colspan="2" style="width: 141px">&nbsp;</td>
+		<td style="height: 210px; width: 5px"></td>
+	</tr>
+</table>
+</form>
+</body>
+
+</html>

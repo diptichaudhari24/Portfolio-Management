@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Customer ID</title>
+<style type="text/css">
+.ms-simple1-left {
+	border-style: none;
+}
+.ms-simple1-even {
+	border-style: none;
+	vertical-align:middle;
+	text-align:center;
+}
+.style1 {
+	margin-bottom: 0px;
+}
+</style>
+
+<script type="text/javascript">
+function validateForm()
+{
+ with (document.custdetails)
+ {
+  var saveit = true;
+  apos=cust_email.value.indexOf("@");
+  dotpos=cust_email.value.lastIndexOf(".");
+  
+  if (cust_id.value.length < 4)
+  {
+   alert ("Username too short.  The username must be at least 4 characters in length.");
+   cust_id.focus();
+   cust_id.select();
+   saveit = false;
+  }
+  if ((cust_pass.value.length < 4) && saveit)
+  {
+   alert ("Password too short.  The password must be at least 4 characters in length.");
+   cust_pass.focus();
+   cust_pass.select();
+   saveit = false;
+  }
+   if ((cust_pass.value != cust_conf.value) && saveit)
+  {
+   alert ("Passwords do-not match.");
+   cust_conf.focus();
+   cust_conf.select();
+   saveit = false;
+  }
+  if (cust_pin.value.length != 6)
+  {
+   alert ("Pincode incorrect.Pincode must be 6 characters in length.");
+   cust_pin.focus();
+   cust_pin.select();
+   saveit = false;
+  }
+  if (apos<1||dotpos-apos<2)
+    {alert("E-mail Syntax Error");}
+ 
+  if (cust_mob.value.length != 10 && isNaN(cust_mob.value))
+  {
+   alert ("Mobile No. incorrect.");
+   cust_mob.focus();
+   cust_mob.select();
+   saveit = false;
+  }
+  return saveit;
+ }
+ }
+
+
+var xmlHttp
+
+function showHint()
+{
+xmlHttp=GetXmlHttpObject()
+var url="gethint.php"
+url=url+"?q="+document.getElementById("custid").value 
+url=url+"&sid="+Math.random()
+xmlHttp.onreadystatechange=stateChanged 
+xmlHttp.open("GET",url,true)
+xmlHttp.send(null)
+} 
+
+function stateChanged() 
+{ 
+if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete")
+ { 
+	alert(xmlHttp.responseText)
+ } 
+}
+
+function GetXmlHttpObject()
+{
+var xmlHttp=null;
+try
+ {
+ // Firefox, Opera 8.0+, Safari
+ xmlHttp=new XMLHttpRequest();
+ }
+catch (e)
+ {
+ // Internet Explorer
+ try
+  {
+  xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+  }
+ catch (e)
+  {
+  xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+ }
+return xmlHttp;
+}
+
+ </script>
+
+</head>
+
+<body background="back.jpg">
+
+
+
+
+<form name="custdetails" action="http://localhost/project/addcust.php" method="post" onsubmit="return validateForm()">
+
+<table cellpadding="0" cellspacing="0" style="width: 829px; height: 439px">
+	<!-- MSTableType="nolayout" -->
+	<!-- fpstyle: 1,011111100 -->
+	<tr>
+		<td class="ms-simple1-even" style="width: 114px; height: 52px;"></td>
+		<td valign="middle" class="ms-simple1-even" style="width: 137px; height: 52px;">Customer ID</td>
+		<td class="ms-simple1-even" style="width: 125px; height: 52px;">
+			<input name="cust_id" id="custid" type="text" size="20" class="style1" /></td>
+		<td valign="top" class="ms-simple1-even" style="height: 52px">
+		</td>
+		<td style="width: 288px; height: 52px;" class="ms-simple1-even">
+			<input name="check" type="button" value="Check availability!!!" ONCLICK="showHint()" /></td>
+	</tr>
+	<tr>
+ 		<td class="ms-simple1-left" style="width: 114px; height: 52px;"></td>
+		<td valign="middle" class="ms-simple1-even" style="width: 137px; height: 52px;">Name</td>
+		<td class="ms-simple1-even" style="width: 125px; height: 52px;">
+					<input name="cust_name" id="custname" type="text" size="20"/></td>
+		<td class="ms-simple1-even" style="height: 52px"></td>
+		<td class="ms-simple1-even" style="width: 288px; height: 52px;">&nbsp;</td>
+		</tr>
+	<tr>
+		<td class="ms-simple1-left" style="width: 114px; height: 69px"></td>
+		<td style="height: 69px; width: 137px;" class="ms-simple1-even">Password </td>
+		<td class="ms-simple1-even" style="height: 69px; width: 125px">
+					<input name="cust_pass" type="password" size="20" /></td>
+		<td class="ms-simple1-even" style="height: 69px"></td>
+		<td class="ms-simple1-even" style="height: 69px; width: 288px"></td>
+		</tr>
+	<tr>
+		<td valign="top" class="ms-simple1-left" style="width: 114px; height: 52px;">
+		<!-- MSCellType="empty" -->
+		</td>
+		<td valign="top" class="ms-simple1-even" style="height: 52px">Confirm Password</td>
+		<td class="ms-simple1-even" style="height: 69px; width: 125px;">
+			<input name="cust_conf" type="password" />
+		</td>
+		<td valign="top" class="ms-simple1-even" style="height: 52px">
+		</td>
+		<td style="width: 288px; height: 52px;" class="ms-simple1-even"></td>
+	</tr>
+
+	<tr>
+		<td class="ms-simple1-left" style="width: 114px; height: 12px;"></td>
+		<td style="width: 137px; height: 12px;" valign="top" class="ms-simple1-even">Address</td>
+		<td valign="top" class="ms-simple1-even" style="width: 125px; height: 12px;"><br/>
+		<textarea cols="20" name="cust_add" rows="3" style="height: 33px"></textarea>
+		&nbsp;</td>
+		<td class="ms-simple1-even" style="height: 12px"></td>
+		<td class="ms-simple1-even" style="width: 288px; height: 12px;"></td>
+		</tr>
+	<tr>
+		<td class="ms-simple1-left" style="width: 114px; height: 69px"></td>
+		<td style="height: 69px; width: 137px;" class="ms-simple1-even">City</td>
+		<td class="ms-simple1-even" style="height: 69px; width: 125px">
+					<input name="cust_city" type="text" size="20" /></td>
+		<td class="ms-simple1-even" style="height: 69px"></td>
+		<td class="ms-simple1-even" style="height: 69px; width: 288px"></td>
+		</tr>
+	<tr>
+		<td valign="top" class="ms-simple1-left" style="width: 114px; height: 52px;">
+		<!-- MSCellType="empty" -->
+		</td>
+		<td valign="top" class="ms-simple1-even" style="height: 52px">Pin</td>
+		<td class="ms-simple1-even" style="height: 69px; width: 125px;">
+			<input name="cust_pin" type="text" />
+		</td>
+		<td valign="top" class="ms-simple1-even" style="height: 52px">
+		</td>
+		<td style="width: 288px; height: 52px;" class="ms-simple1-even"></td>
+	</tr>
+	<tr>
+		<td style="width: 114px; height: 53px;" class="ms-simple1-left"></td>
+		<td valign="top" class="ms-simple1-even" style="height: 53px">Mobile no</td>
+		<td class="ms-simple1-even" style="height: 69px; width: 125px;">
+			<input name="cust_mob" type="text" size="20" /></td>
+		<td valign="top" class="ms-simple1-even" style="height: 53px">
+		</td>
+		<td class="ms-simple1-even" style="width: 288px; height: 53px;">
+		</td>
+		</tr>
+	<tr>
+		<td style="width: 114px; height: 52px;" class="ms-simple1-left"></td>
+		<td valign="top" class="ms-simple1-even" style="height: 52px">E-Mail</td>
+		<td class="ms-simple1-even" style="height: 52px; width: 125px;">
+			<input name="cust_email" type="text" size="20"/></td>
+		<td valign="top" class="ms-simple1-even" style="height: 52px">
+		</td>
+		<td valign="top" class="ms-simple1-even" style="width: 288px; height: 52px;">
+		</td>
+		</tr>
+		<tr><td colspan="5" style="height: 56px"></td></tr>
+	<tr>
+		<td class="ms-simple1-left" style="width: 114px; height: 50px;" align="center"></td>
+		<td style="width: 137px; height: 50px;" align="center" colspan="2" valign="middle">
+			<input name="submit" type="submit" value="   Submit    " align="left"/>
+		&nbsp;</td>
+		<td class="ms-simple1-even" style="width: 125px; height: 50px;"></td>
+		<td valign="top" class="ms-simple1-even" style="width: 288px; height: 50px;">
+		<!-- MSCellType="empty" -->
+		</td>
+		</tr>
+</table>
+</form>
+</body>
+
+</html>
